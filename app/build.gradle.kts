@@ -67,6 +67,13 @@ dependencies {
 
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
+
+    // ExoPlayer Core
+    implementation ("androidx.media3:media3-exoplayer:1.8.0")
+
+// UI components for playback controls
+    implementation ("androidx.media3:media3-ui:1.8.0")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
