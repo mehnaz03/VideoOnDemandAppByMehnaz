@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_batman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Batman Movies"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:paddingBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_batman"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:scrollbars="none" />
+
+        <TextView
+            android:id="@+id/title_latest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Latest Movies (2022)"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#212121"
+            android:paddingTop="24dp"
+            android:paddingBottom="8dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_latest"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:scrollbars="none" />
+
+    </LinearLayout>
+</ScrollView>
