@@ -4,7 +4,6 @@ plugins {
     kotlin("kapt")
 
 
-
 }
 
 
@@ -65,6 +64,9 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51")
     implementation("androidx.navigation:navigation-fragment:2.9.3")
     kapt("com.google.dagger:hilt-android-compiler:2.51")
+
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
     // Testing
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.3.0")
