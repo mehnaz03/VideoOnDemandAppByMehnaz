@@ -5,10 +5,21 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 android:id="@+id/nav_graph"
 app:startDestination="@id/homeFragment">
 
-<fragment
-    android:id="@+id/homeFragment"
-    android:name="com.mehnaz.videoondemandapp.ui.home.HomeFragment"
-    android:label="Home" >
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.mehnaz.videoondemandapp.ui.home.HomeFragment"
+        android:label="Home">
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
 
-</fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.mehnaz.videoondemandapp.ui.details.DetailsFragment"
+        android:label="Details">
+        <argument
+            android:name="imdbID"
+            app:argType="string" />
+    </fragment>
 </navigation>

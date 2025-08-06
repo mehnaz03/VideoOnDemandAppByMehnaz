@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.mehnaz.videoondemandapp.R
 
 
@@ -15,19 +16,20 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.mehnaz.videoondemandapp.data.model.MovieItem
 import com.mehnaz.videoondemandapp.data.repository.MovieRepository
 import com.mehnaz.videoondemandapp.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: HomeViewModel
+
 
     private lateinit var batmanAdapter: HomeMovieAdapter
     private lateinit var latestAdapter: HomeMovieAdapter
+    private val viewModel: HomeViewModel by viewModels()
 
-    private val apiKey = "f42caa44"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,12 +42,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
-            override fun <T : androidx.lifecycle.ViewModel> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return HomeViewModel(MovieRepository(apiKey)) as T
-            }
-        })[HomeViewModel::class.java]
+
 
         batmanAdapter = HomeMovieAdapter { movie -> navigateToDetails(movie) }
         latestAdapter = HomeMovieAdapter { movie -> navigateToDetails(movie) }
@@ -73,8 +70,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigateToDetails(movie: MovieItem) {
-       // val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(movie.imdbID)
-       // findNavController().navigate(action)
+        val bundle = Bundle().apply {
+            putString("imdbID", movie.imdbID)
+        }
+        findNavController().navigate(R.id.detailsFragment, bundle)
     }
 
     override fun onDestroyView() {

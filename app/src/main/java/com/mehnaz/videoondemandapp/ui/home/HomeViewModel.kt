@@ -6,9 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mehnaz.videoondemandapp.data.model.MovieItem
 import com.mehnaz.videoondemandapp.data.repository.MovieRepository
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(private val repository: MovieRepository) : ViewModel() {
+@HiltViewModel
+
+class HomeViewModel @Inject constructor(
+    private val repository: MovieRepository
+) : ViewModel() {
 
     private val _batmanMovies = MutableLiveData<List<MovieItem>>()
     val batmanMovies: LiveData<List<MovieItem>> = _batmanMovies

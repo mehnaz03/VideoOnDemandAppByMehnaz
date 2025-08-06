@@ -2,16 +2,22 @@ package com.mehnaz.videoondemandapp.data.repository
 
 import com.mehnaz.videoondemandapp.data.model.MovieItem
 import com.mehnaz.videoondemandapp.data.model.MovieResponse
-import com.mehnaz.videoondemandapp.data.remote.RetrofitInstance
+import com.mehnaz.videoondemandapp.data.remote.ApiService
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
-class MovieRepository(private val apiKey: String) {
+@Singleton
+class MovieRepository @Inject constructor(
+    private val apiService: ApiService
+) {
+    private val apiKey = "f42caa44"
 
     suspend fun searchMovies(query: String, page: Int, year: String? = null): MovieResponse {
-        return RetrofitInstance.api.searchMovies(apiKey, query, page, year)
+        return apiService.searchMovies(apiKey, query, page, year)
     }
 
     suspend fun getMovieDetails(imdbId: String): MovieItem {
-        return RetrofitInstance.api.getMovieDetails(apiKey, imdbId)
+        return apiService.getMovieDetails(apiKey, imdbId)
     }
 }

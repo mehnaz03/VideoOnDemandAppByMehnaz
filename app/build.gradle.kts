@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     kotlin("android")
     kotlin("kapt")
-
+    id("com.google.dagger.hilt.android")
 
 }
 
@@ -69,13 +69,19 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     // ExoPlayer Core
-    implementation ("androidx.media3:media3-exoplayer:1.8.0")
+    implementation ("androidx.media3:media3-exoplayer:1.3.1")
+    implementation("androidx.media3:media3-exoplayer-hls:1.3.1" )
+    implementation ("androidx.media3:media3-ui:1.3.1")
 
 // UI components for playback controls
     implementation ("androidx.media3:media3-ui:1.8.0")
 
+    implementation("com.google.dagger:hilt-android:2.50")
+    kapt("com.google.dagger:hilt-compiler:2.50")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.3.0")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("io.mockk:mockk:1.13.7")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
 }
