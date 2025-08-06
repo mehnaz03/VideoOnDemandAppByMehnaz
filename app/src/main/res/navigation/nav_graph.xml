@@ -18,6 +18,16 @@ app:startDestination="@id/homeFragment">
         android:id="@+id/detailsFragment"
         android:name="com.mehnaz.videoondemandapp.ui.details.DetailsFragment"
         android:label="Details">
-
+        <action
+            android:id="@+id/action_detailsFragment_to_movieListFragment"
+            app:destination="@id/movielistFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movielistFragment"
+        android:name="com.mehnaz.videoondemandapp.ui.movielist.MovieListFragment"
+        android:label="Movielist" >
+        <action
+            android:id="@+id/action_movielistFragment_to_detailFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

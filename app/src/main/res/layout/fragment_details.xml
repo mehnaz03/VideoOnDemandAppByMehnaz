@@ -2,52 +2,72 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="16dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:titleTextColor="@color/accent_orange"
-            android:background="@color/cardview_light_background"
-            android:title="Details page">
 
-        </Toolbar>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            android:elevation="4dp"
+            app:title="Details Page"
+            app:titleTextColor="@android:color/white"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
         <androidx.media3.ui.PlayerView
             android:id="@+id/player_view"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="#000" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#000"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="16:9" />
 
         <TextView
             android:id="@+id/tv_title"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#212121"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/player_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tv_genre"
             android:textSize="16sp"
             android:textColor="#757575"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingBottom="12dp" />
+            android:paddingBottom="12dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/tv_plot"
             android:textSize="16sp"
             android:textColor="#424242"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="4dp"
-            android:paddingBottom="16dp" />
+            android:paddingBottom="16dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_genre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
