@@ -8,6 +8,19 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:titleTextColor="@color/accent_orange"
+            android:background="@color/cardview_light_background"
+            android:title="Details page">
+
+        </Toolbar>
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="#000" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -35,10 +48,6 @@
             android:lineSpacingExtra="4dp"
             android:paddingBottom="16dp" />
 
-        <androidx.media3.ui.PlayerView
-            android:id="@+id/player_view"
-            android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:background="#000" />
+
     </LinearLayout>
 </ScrollView>

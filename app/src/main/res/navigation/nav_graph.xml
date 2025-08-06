@@ -18,8 +18,6 @@ app:startDestination="@id/homeFragment">
         android:id="@+id/detailsFragment"
         android:name="com.mehnaz.videoondemandapp.ui.details.DetailsFragment"
         android:label="Details">
-        <argument
-            android:name="imdbID"
-            app:argType="string" />
+
     </fragment>
 </navigation>

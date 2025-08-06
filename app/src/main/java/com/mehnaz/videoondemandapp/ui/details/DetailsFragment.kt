@@ -3,6 +3,7 @@ package com.mehnaz.videoondemandapp.ui.details
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,7 +42,7 @@ class DetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        movieImdbId = arguments?.getString("imdbId")
+
     }
 
     override fun onCreateView(
@@ -54,14 +55,14 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        movieImdbId = arguments?.getString("imdbID")
         movieImdbId?.let { viewModel.loadMovieDetails(it) }
-
+        Log.e("TAG","Data: "+ movieImdbId)
         viewModel.movieDetail.observe(viewLifecycleOwner) { movie ->
             binding.tvTitle.text = movie.Title
             binding.tvGenre.text = movie.Genre ?: ""
             binding.tvPlot.text = movie.Plot ?: ""
-
+           Log.e("TAG","Data: "+ movie)
 //            Glide.with(this)
 //                .load(movie.Poster)
 //                .into(binding.ivPoster)
