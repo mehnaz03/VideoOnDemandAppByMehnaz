@@ -1,55 +1,83 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="12dp">
+    android:fillViewport="true"
+   >
 
     <LinearLayout
         android:orientation="vertical"
+        android:background="@color/background_dark"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp">
 
-        <TextView
-            android:id="@+id/title_batman"
+        <!-- Banner Carousel -->
+
+        <FrameLayout
+            android:id="@+id/bannerContainer"
             android:layout_width="match_parent"
+            android:layout_height="460dp"
+
+            android:layout_marginBottom="6dp">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPagerBanner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+
+                android:overScrollMode="never" />
+
+            <!-- Indicator dots -->
+            <LinearLayout
+                android:id="@+id/indicatorLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:orientation="horizontal"
+                android:layout_margin="12dp"
+                android:paddingEnd="10dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:clipToPadding="false"/>
+        </FrameLayout>
+
+
+
+        <!-- Batman rail -->
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Batman Movies"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#212121"
-            android:paddingBottom="8dp" />
+            android:textColor="@color/accent_orange"
+            android:padding="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_batman"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:overScrollMode="never"
-            android:clipToPadding="false"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:scrollbars="none" />
-
-        <TextView
-            android:id="@+id/title_latest"
+            android:id="@+id/recyclerBatman"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Latest Movies (2022)"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#212121"
-            android:paddingTop="24dp"
-            android:paddingBottom="8dp" />
+            android:paddingBottom="16dp"
+            android:layout_margin="8dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"/>
+
+        <!-- Latest rail -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/accent_orange"
+            android:text="Latest Movies"
+            android:padding="16dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_latest"
+            android:id="@+id/recyclerLatest"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:overScrollMode="never"
+            android:layout_height="wrap_content"
+            android:paddingBottom="70dp"
+            android:layout_margin="8dp"
             android:clipToPadding="false"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            android:scrollbars="none" />
+            android:overScrollMode="never"/>
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

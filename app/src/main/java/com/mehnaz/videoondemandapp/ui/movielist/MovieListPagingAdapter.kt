@@ -30,7 +30,6 @@ class MovieListPagingAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: MovieItem) {
             binding.tvTitle.text = movie.Title
-            binding.tvYear.text = movie.Year
             Glide.with(binding.root).load(movie.Poster).into(binding.ivPoster)
             binding.root.setOnClickListener { onItemClick(movie) }
         }

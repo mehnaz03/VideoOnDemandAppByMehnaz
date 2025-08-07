@@ -23,6 +23,9 @@ class HomeViewModel @Inject constructor(
     private val _latestMovies = MutableLiveData<List<MovieItem>>()
     val latestMovies: LiveData<List<MovieItem>> = _latestMovies
 
+    private val _bannerMovies = MutableLiveData<List<MovieItem>>()
+    val bannerMovies: LiveData<List<MovieItem>> = _bannerMovies
+
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
 
@@ -34,6 +37,8 @@ class HomeViewModel @Inject constructor(
 
                 val latestResponse = repository.searchMovies("movie", 1, year = "2022")
                 _latestMovies.value = latestResponse.Search ?: emptyList()
+
+                _bannerMovies.value = batmanResponse.Search?.take(5) ?: emptyList() // Use top 5
             } catch (e: Exception) {
                 _error.value = e.localizedMessage ?: "Unknown Error"
             }
