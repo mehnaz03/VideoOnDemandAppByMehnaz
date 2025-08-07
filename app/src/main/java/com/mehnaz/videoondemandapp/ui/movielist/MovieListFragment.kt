@@ -48,10 +48,12 @@ class MovieListFragment : Fragment() {
 
         binding.recyclerListing.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = listingAdapter.withLoadStateHeaderAndFooter(
+
+            binding.recyclerListing.adapter = listingAdapter.withLoadStateHeaderAndFooter(
                 header = MovieLoadStateAdapter { listingAdapter.retry() },
                 footer = MovieLoadStateAdapter { listingAdapter.retry() }
             )
+
         }
 
         loadMovies("Batman")
@@ -60,11 +62,11 @@ class MovieListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             listingAdapter.loadStateFlow.collectLatest { loadState ->
                 _binding?.let { binding ->
-                    binding.progressBar.visibility = if (loadState.refresh is LoadState.Loading) {
-                        View.VISIBLE
-                    } else {
-                        View.GONE
-                    }
+//                    binding.progressBar.visibility = if (loadState.refresh is LoadState.Loading) {
+//                        View.VISIBLE
+//                    } else {
+//                        View.GONE
+//                    }
 
                     val errorState = when {
                         loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error

@@ -24,14 +24,24 @@ class MovieLoadStateAdapter(private val retry: () -> Unit) :
             }
         }
 
-        fun bind(loadState: LoadState) {
-            binding.progressBar.visibility = if (loadState is LoadState.Loading) View.VISIBLE else View.GONE
-            binding.btnRetry.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
-            binding.tvError.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
-            if (loadState is LoadState.Error) {
-                binding.tvError.text = loadState.error.localizedMessage
-            }
-        }
+//        fun bind(loadState: LoadState) {
+//            binding.progressBar.visibility = if (loadState is LoadState.Loading) View.VISIBLE else View.GONE
+//            binding.btnRetry.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
+//            binding.tvError.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
+//            if (loadState is LoadState.Error) {
+//                binding.tvError.text = loadState.error.localizedMessage
+//            }
+//        }
+fun bind(loadState: LoadState) {
+    binding.progressBar.visibility = if (loadState is LoadState.Loading) View.VISIBLE else View.GONE
+    binding.btnRetry.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
+    binding.tvError.visibility = if (loadState is LoadState.Error) View.VISIBLE else View.GONE
+
+    if (loadState is LoadState.Error) {
+        binding.tvError.text = loadState.error.localizedMessage
+    }
+}
+
     }
 
     override fun onBindViewHolder(holder: LoadStateViewHolder, loadState: LoadState) {
