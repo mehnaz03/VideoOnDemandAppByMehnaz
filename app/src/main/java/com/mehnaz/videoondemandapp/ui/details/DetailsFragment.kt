@@ -15,10 +15,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.mehnaz.videoondemandapp.R
 import com.mehnaz.videoondemandapp.data.repository.MovieRepository
 import com.mehnaz.videoondemandapp.databinding.FragmentDetailsBinding
+import com.mehnaz.videoondemandapp.ui.home.HomeMovieAdapter
 import com.mehnaz.videoondemandapp.ui.home.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,9 +39,10 @@ class DetailsFragment : Fragment() {
     private var playbackPosition: Long = 0L
 
     private val viewModel: DetailsViewModel by viewModels()
-
+    private val homeviewModel: HomeViewModel by viewModels()
     private val sampleVideoUrl = "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
-
+    private lateinit var batmanAdapter: HomeMovieAdapter
+    private lateinit var latestAdapter: HomeMovieAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,17 +65,54 @@ class DetailsFragment : Fragment() {
             binding.tvTitle.text = movie.Title
             binding.tvGenre.text = movie.Genre ?: ""
             binding.tvPlot.text = movie.Plot ?: ""
+
            Log.e("TAG","Data: "+ movie)
 //            Glide.with(this)
 //                .load(movie.Poster)
 //                .into(binding.ivPoster)
+        }
+        batmanAdapter = HomeMovieAdapter { movie ->
+            Toast.makeText(requireContext(), "Clicked: ${movie.Title}", Toast.LENGTH_SHORT).show()
+        }
+
+        latestAdapter = HomeMovieAdapter { movie ->
+            Toast.makeText(requireContext(), "Clicked: ${movie.Title}", Toast.LENGTH_SHORT).show()
+        }
+        setupRecyclerViews()
+        homeviewModel.batmanMovies.observe(viewLifecycleOwner) {
+            batmanAdapter.submitList(it)
+            batmanAdapter.showShimmerLoading(false)
+        }
+
+        homeviewModel.latestMovies.observe(viewLifecycleOwner) {
+            latestAdapter.submitList(it)
+            latestAdapter.showShimmerLoading(false)
+        }
+        homeviewModel.fetchHomeData()
+        binding.backIcon.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         viewModel.error.observe(viewLifecycleOwner) {
             Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_SHORT).show()
         }
     }
+    private fun setupRecyclerViews() {
 
+
+        binding.rvMoreLikeThis.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = batmanAdapter
+        }
+
+        binding.rvRelated.apply {
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = latestAdapter
+        }
+
+        batmanAdapter.showShimmerLoading(true)
+        latestAdapter.showShimmerLoading(true)
+    }
     private fun initializePlayer() {
         player = ExoPlayer.Builder(requireContext()).build()
         binding.playerView.player = player

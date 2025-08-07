@@ -24,7 +24,7 @@
         android:text="Movie Title"
         android:textSize="14sp"
         android:textStyle="bold"
-        android:textColor="#FFFFFF"
+        android:textColor="#B3AFAF"
         android:maxLines="1"
         android:ellipsize="end" />
 </LinearLayout>
