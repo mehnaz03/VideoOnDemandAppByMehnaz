@@ -6,6 +6,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.mehnaz.videoondemandapp.data.model.MovieItem
 import com.mehnaz.videoondemandapp.databinding.ItemMovieVerticalBinding
 
@@ -31,7 +32,7 @@ class MovieListPagingAdapter(
         fun bind(movie: MovieItem) {
             binding.tvTitle.text = movie.Title
             binding.tvYear.text = movie.Year
-            Glide.with(binding.root).load(movie.Poster).into(binding.ivPoster)
+            Glide.with(binding.root).load(movie.Poster).transform(RoundedCorners(12)) .into(binding.ivPoster)
             binding.root.setOnClickListener { onItemClick(movie) }
         }
     }

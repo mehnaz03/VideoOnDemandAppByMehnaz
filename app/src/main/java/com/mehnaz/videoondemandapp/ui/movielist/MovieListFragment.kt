@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mehnaz.videoondemandapp.R
 
@@ -30,7 +31,7 @@ class MovieListFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         return binding.root
@@ -47,37 +48,33 @@ class MovieListFragment : Fragment() {
         }
 
         binding.recyclerListing.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-
-            binding.recyclerListing.adapter = listingAdapter.withLoadStateHeaderAndFooter(
+            layoutManager = GridLayoutManager(requireContext(), 2)
+            adapter = listingAdapter.withLoadStateHeaderAndFooter(
                 header = MovieLoadStateAdapter { listingAdapter.retry() },
                 footer = MovieLoadStateAdapter { listingAdapter.retry() }
             )
-
         }
 
         loadMovies("Batman")
 
-        // ✅ Safe access to binding using viewLifecycleOwner
+        // Show shimmer, recycler or toast based on LoadState.refresh
         viewLifecycleOwner.lifecycleScope.launch {
             listingAdapter.loadStateFlow.collectLatest { loadState ->
-                _binding?.let { binding ->
-//                    binding.progressBar.visibility = if (loadState.refresh is LoadState.Loading) {
-//                        View.VISIBLE
-//                    } else {
-//                        View.GONE
-//                    }
 
-                    val errorState = when {
-                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                        else -> null
-                    }
+                val refreshState = loadState.refresh
 
-                    errorState?.let {
-                        Toast.makeText(requireContext(), "Error: ${it.error.localizedMessage}", Toast.LENGTH_SHORT).show()
-                    }
+                binding.apply {
+                    // Show shimmer when loading initial data
+                    shimmerLayoutContainer.isVisible = refreshState is LoadState.Loading
+                    recyclerListing.isVisible = refreshState is LoadState.NotLoading
+                }
+
+                if (refreshState is LoadState.Error) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error: ${refreshState.error.localizedMessage}",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }
         }
@@ -96,3 +93,4 @@ class MovieListFragment : Fragment() {
         _binding = null
     }
 }
+
