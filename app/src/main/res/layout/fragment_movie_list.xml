@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
+    android:background="@color/card_dark"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <!-- RecyclerView -->
+    <!-- Toolbar at the top -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/card_dark"
+        app:title="Movies"
+        app:titleTextColor="@android:color/white"
+        app:navigationIcon="@drawable/ic_arrow_back" />
+
+    <!-- RecyclerView below toolbar -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerListing"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
         android:visibility="gone" />
 
-    <!-- Shimmer Container showing multiple shimmer items -->
-    <LinearLayout
-        android:id="@+id/shimmerLayoutContainer"
-        android:layout_width="match_parent"
+    <!-- ProgressBar centered, overlaying RecyclerView -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="visible"
-        android:padding="8dp">
-
-        <!-- Include shimmer placeholder multiple times for nice effect -->
-        <include layout="@layout/shimmer_movie_item" />
-        <include layout="@layout/shimmer_movie_item" />
-        <include layout="@layout/shimmer_movie_item" />
-        <include layout="@layout/shimmer_movie_item" />
-        <include layout="@layout/shimmer_movie_item" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
 </FrameLayout>

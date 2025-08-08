@@ -1,6 +1,7 @@
 package com.mehnaz.videoondemandapp
 
 import android.os.Bundle
+import android.view.View
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -28,5 +29,12 @@ class MainActivity : AppCompatActivity() {
 
         // Setup the bottom navigation with navController
         bottomNavigationView.setupWithNavController(navController)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+
+            when (destination.id) {
+                R.id.detailsFragment -> bottomNavigationView.visibility = View.GONE
+                else -> bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
     }
 }

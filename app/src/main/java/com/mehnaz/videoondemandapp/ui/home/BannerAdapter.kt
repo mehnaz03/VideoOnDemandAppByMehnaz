@@ -22,7 +22,8 @@ class BannerAdapter(
             Glide.with(binding.imageBanner.context)
                 .load(item.Poster)
                 .transform(RoundedCorners(32))
-                .placeholder(R.drawable.bg_image_placeholder)
+                .placeholder(R.drawable.ic_image_placeholder)
+                .error(R.drawable.ic_image_placeholder)
                 .into(binding.imageBanner)
 
             binding.imageBanner.setOnClickListener {

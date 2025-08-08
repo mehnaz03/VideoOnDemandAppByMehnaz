@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginEnd="6dp">
+    android:layout_marginEnd="8dp">
 
     <!-- Poster Image with Rounded Corners -->
     <com.google.android.material.imageview.ShapeableImageView
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Movie Title"
+        android:fontFamily="@font/poppins_medium"
         android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="#B3AFAF"
+        android:textColor="#8E8E8E"
         android:maxLines="1"
         android:ellipsize="end" />
 </LinearLayout>

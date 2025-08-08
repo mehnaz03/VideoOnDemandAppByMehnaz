@@ -4,12 +4,27 @@
     <resources xmlns:tools="http://schemas.android.com/tools">
         <style name="Theme.VideoOnDemandApp" parent="Theme.AppCompat.Light.NoActionBar">
             <!-- Customize your theme here. -->
-            <item name="colorPrimary">@color/purple_500</item>
-            <item name="colorPrimaryDark">@color/purple_700</item>
-            <item name="colorAccent">@color/teal_200</item>
+            <item name="colorPrimary">#230554</item>
+            <item name="colorPrimaryDark">#2D2243</item>
+            <item name="colorAccent">#E6BBCB</item>
         </style>
     <style name="RoundedCornerImage" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">8dp</item>
     </style>
-    </resources>
+    <style name="RoundedCornerImageList" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="BannerBottomRounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">32dp</item>
+        <item name="cornerSizeBottomRight">32dp</item>
+    </style>
+    <style name="RoundedShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

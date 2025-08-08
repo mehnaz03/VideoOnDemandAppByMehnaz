@@ -6,11 +6,12 @@
     android:layout_height="wrap_content"
     android:padding="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_poster"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedCornerImageList"
        />
 
     <TextView
@@ -18,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="#8E8E8E"
         android:paddingTop="8dp"
         android:maxLines="1"
         android:ellipsize="end" />
@@ -28,6 +30,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="14sp"
+        android:textColor="#807F7F"
+        android:fontFamily="@font/poppins_medium"
         android:paddingTop="2dp" />
 
 </LinearLayout>

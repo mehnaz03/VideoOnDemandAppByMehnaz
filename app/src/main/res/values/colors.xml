@@ -12,4 +12,7 @@
     <color name="text_primary">#FFFFFF</color>
     <color name="text_secondary">#B0B0B0</color>
     <color name="accent_orange">#FF6D00</color>
+    <color name="colorPrimary">#230554</color>
+    <color name="colorPrimaryDark">#2D2243</color>
+
 </resources>
